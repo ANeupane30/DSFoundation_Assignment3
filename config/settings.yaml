@@ -1,0 +1,111 @@
+# HIT140 Assessment 3 - Bat Seasonal Behavior Analysis Configuration
+# Professional Data Analytics Pipeline Settings
+
+# Project Information
+project:
+  name: "HIT140_Assessment3_BatSeasonalBehavior"
+  version: "1.0.0"
+  description: "Linear Regression Analysis of Bat Seasonal Behavior with Rat Interactions"
+  author: "Student - HIT140 Data Science Foundations"
+  
+# Data Configuration
+data:
+  raw_data_path: "data/raw/"
+  processed_data_path: "data/processed/"
+  output_path: "results/"
+  
+  # Data files
+  datasets:
+    dataset1_cleaned: "Dataset1_Cleaner.csv"
+    dataset2_cleaned: "Dataset2_Cleaner.csv" 
+    feature_engineered: "bat_rat_features_engineered.csv"
+  
+  # Data processing parameters
+  processing:
+    missing_value_threshold: 0.05
+    outlier_method: "IQR"
+    outlier_multiplier: 1.5
+
+# Feature Engineering Configuration
+feature_engineering:
+  # Temporal features
+  temporal:
+    rolling_windows: [7, 14, 30]
+    seasonal_indicators: true
+    cyclical_encoding: true
+    
+  # Seasonal analysis (Australian seasons)
+  seasonal:
+    summer_months: [12, 1, 2]
+    autumn_months: [3, 4, 5] 
+    winter_months: [6, 7, 8]
+    spring_months: [9, 10, 11]
+    
+  # Food availability mapping
+  food_availability:
+    scarcity_seasons: ["winter", "autumn"]
+    abundance_seasons: ["spring", "summer"]
+    
+# Model Configuration  
+modeling:
+  # Linear Regression parameters
+  linear_regression:
+    test_size: 0.2
+    random_state: 42
+    normalize_features: true
+    
+  # Feature selection
+  feature_selection:
+    max_features: 15
+    correlation_threshold: 0.95
+    variance_threshold: 0.01
+    
+  # Model evaluation
+  evaluation:
+    metrics: ["r2_score", "mean_squared_error", "mean_absolute_error"]
+    cross_validation_folds: 5
+    
+  # Seasonal comparison
+  seasonal_analysis:
+    primary_seasons: ["summer", "autumn"]  # Use these due to data availability
+    backup_seasons: ["winter", "spring"]
+    min_observations_per_season: 30
+
+# Visualization Configuration
+visualization:
+  # Plot settings
+  style: "seaborn-v0_8"
+  color_palette: "viridis"
+  figure_size: [12, 8]
+  dpi: 300
+  
+  # Output formats
+  output_formats: ["png", "pdf"]
+  save_plots: true
+  
+  # Plot types for analysis
+  plots:
+    - "correlation_matrix"
+    - "seasonal_distribution"
+    - "model_performance"
+    - "feature_importance"
+    - "residual_analysis"
+    - "seasonal_comparison"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "results/analysis.log"
+
+# Output Configuration
+output:
+  # Report generation
+  generate_report: true
+  report_format: "html"
+  
+  # Results to save
+  save_models: true
+  save_features: true
+  save_predictions: true
+  save_metrics: true
